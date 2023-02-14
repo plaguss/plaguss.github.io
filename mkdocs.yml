@@ -1,1 +1,31 @@
-site_name: My Docs
+site_name: My Site
+site_description: Hellp.
+site_url: https://plaguss.github.io
+
+theme:
+  name: "material"
+  palette: 
+    - scheme: default
+      primary: blue grey
+      accent: orange
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: blue grey
+      accent: orange
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+  features:
+    - content.code.annotate 
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+  language: en
+
+nav:
+  - Intro: index.md
+
+
