@@ -13,9 +13,8 @@ ROOT = Path(__file__).parent.parent.resolve()
 DATA_FOLDER = ROOT / "data"
 
 BLOGS = DATA_FOLDER / "blogs.csv"
-PODCASTS = DATA_FOLDER / "blogs.csv"
-
-blog = Path(".") / "data/blogs.csv"
+PODCASTS = DATA_FOLDER / "podcasts.csv"
+BOOKS = DATA_FOLDER / "books.csv"
 
 md = MarkdownRenderer()
 
@@ -29,29 +28,36 @@ def to_raw_html(content: str) -> str:
 
 
 def do_clickable(element: str, title: str = "Blogs list") -> str:
-    """Makes a markdown element clickable. """
+    """Makes a markdown element clickable."""
     first = to_raw_html(f"<details>\n<summary> {title}:</summary>")
     last = to_raw_html("</details>\n")
     return f"{first}\n\n{element}\n\n{last}"
 
 
-def read_file(filename: Path) -> list[str]:
+def read_csv(filename: Path, num_columns: int = 1) -> list[str]:
+    if num_columns == 1:  # Blogs
+        getter = lambda x: x[0]
+    else:  # Podcasts and books
+        getter = lambda x: x
+
     lines = []
     with open(filename, "r") as f:
-        f.readline()  # The first line are the headers, ignore
         for line in f.readlines():
-            lines.append(line.replace("\n", "").split(",")[0])
+            lines.append(getter(line.replace("\n", "").split(",")))
     return lines
 
 
-def create_list(data: list[str]) -> str:
+def create_list(data: list[list[str] | str]) -> str:
     # Creates a list of links
-    return md.list([md.link(blog, blog) for blog in data])
+    if isinstance(data[0], list):
+        return md.list([md.link(items[0], items[1]) for items in data])
+    else:
+        return md.list([md.link(item, item) for item in data])
 
 
-def content(blogs: list[list[str]]) -> str:
+def content(blogs: list[str], podcasts: list[list[str]], books: list[list[str]]) -> str:
     front_matter = textwrap.dedent(
-"""---
+        """---
 title: Home
 linkTitle: Home
 menu: main
@@ -63,26 +69,39 @@ weight: 3
     md.add(front_matter)
 
     md.add(
-"""The following table contains a series of blogs that I've come
-across at any point in time and found anything interesting. Its just a
-personal table to keep track of interesting info, with no specific order.
+        """The following lists of items correspond to content that has
+helped me to learn (and still does), and would like to keem them
+located either for future use or just in case I want to share
+with anybody. None of it is in any specific order.
 """
     )
 
-    # md.add(create_list(blogs))
-    md.add(do_clickable(create_list(blogs)))
+    md.add(
+        do_clickable(
+            create_list(blogs), title="📔 Blogs I tend to visit from time to time"
+        )
+    )
+    md.add(do_clickable(create_list(podcasts), title="📻 Podcasts I listen"))
+    md.add(
+        do_clickable(
+            create_list(books),
+            title="📚 Books I have read (completely or some parts), or that are waiting to be read",
+        )
+    )
 
     return md.text
 
 
 def create_home_file(filename: Path) -> None:
-    """Creates the home file. """
-    blogs = read_file(BLOGS)
+    """Creates the home file."""
+    blogs = read_csv(BLOGS)
+    podcasts = read_csv(PODCASTS, num_columns=2)
+    books = read_csv(BOOKS, num_columns=2)
 
-    data = content(blogs)
+    data = content(blogs, podcasts, books)
 
     filename.write_text(data, encoding="utf-8")
 
 
 if __name__ == "__main__":
-    create_home_file(ROOT / "content" / "home" / "home.md")
+    create_home_file(ROOT / "content" / "home" / "_index.md")
