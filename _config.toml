@@ -1,0 +1,86 @@
+baseURL = "https://plaguss.github.io/"
+languageCode = "en-us"
+title = "Agus"
+
+theme = "PaperMod"
+
+Paginate = 15
+preserveTaxonomyNames = true
+
+enableRobotsTXT = true # generate robots.txt
+
+# Syntax Highlighting ( https://gohugo.io/content-management/syntax-highlighting/ )
+pygmentsCodefences = true
+
+enableEmoji = true
+
+# Missing translations will default to this content language
+defaultContentLanguage = "en"
+
+[params.profileMode]
+enabled = true
+title = "Agustín Piqueres Lajarín"
+subtitle = "Data Scientist & Python Developer"
+#imageUrl = "./me.jpg"
+imageUrl = "https://raw.githubusercontent.com/plaguss/plaguss.github.io/main/.github/images/pic.jpg"
+imageTitle = "Agus"
+imageWidth = 320
+imageHeight = 320
+
+[[params.profileMode.buttons]]
+name = "Blog"
+url = "/blog"
+
+[[params.profileMode.buttons]]
+name = "Archive"
+url = "/archives"
+
+[[params.socialIcons]]
+name = "Github"
+url = "https://github.com/plaguss/"
+
+[[params.socialIcons]]
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/agustín-piqueres-lajarín-6a661810a"
+
+[params.info]
+description = ""
+title404 = "Nothing's here!"
+
+[params.assets]
+favicon = "favicon.ico"  # TODO: create
+customCSS = ["css/custom.css"]
+#customJS = ["js/custom.js"]
+gopher = "" # used in 404 template ( Generator: https://gopherize.me )
+
+[params.settings]
+# date & time format: https://golang.org/pkg/time/
+dateFormat = "2006-01-02"
+listDateFormat = "2006-01-02"
+archiveDateFormat = "Jan 02"
+hideEntryNavigation = ["page"] # boolean / array of sections
+hideSocialMenu = true
+showReadingTime = true
+taxonomyCloudShuffle = true
+accentColor = "#297FD5"
+
+[params.sidebar]
+enable = true
+
+[params.widgets]
+homepage = ["recent_posts"]
+sidebar = ["about"]
+
+[params.social]
+email = "agustin.piqueres@gmail.com"
+github = "plaguss"
+
+[languages]
+# edit this block for your own language
+[languages.en]
+lang = "en"
+languageName = "English"
+weight = 1
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]

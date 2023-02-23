@@ -1,0 +1,81 @@
+baseURL: 'https://plaguss.github.io/'
+languageCode: en-us
+title: Agus site
+theme: PaperMod
+Paginate: 15
+preserveTaxonomyNames: true
+enableRobotsTXT: true
+pygmentsCodefences: true
+enableEmoji: true
+defaultContentLanguage: en
+params:
+  profileMode:
+    enabled: true
+    title: Agustín Piqueres Lajarín
+    subtitle: >-
+      You may find some things related to data science and python here.
+      I also tend to wander, partially related content could appear.
+    imageUrl: >-
+      https://raw.githubusercontent.com/plaguss/plaguss.github.io/main/.github/images/pic.jpg
+    imageTitle: Agus
+    imageWidth: 320
+    imageHeight: 320
+    buttons:
+      - name: Blog
+        url: /blog
+  socialIcons:
+    - name: Github
+      url: 'https://github.com/plaguss/'
+    - name: LinkedIn
+      url: 'https://www.linkedin.com/in/agustín-piqueres-lajarín-6a661810a'
+  info:
+    description: ''
+    title404: Nothing's here!
+  assets:
+    favicon: favicon.ico
+    customCSS:
+      - css/custom.css
+    gopher: ''
+  settings:
+    dateFormat: '2006-01-02'
+    listDateFormat: '2006-01-02'
+    archiveDateFormat: Jan 02
+    hideEntryNavigation:
+      - page
+    hideSocialMenu: true
+    showReadingTime: true
+    taxonomyCloudShuffle: true
+    accentColor: '#297FD5'
+  sidebar:
+    enable: true
+  widgets:
+    homepage:
+      - recent_posts
+    sidebar:
+      - about
+  social:
+    email: agustin.piqueres@gmail.com
+    github: plaguss
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+
+languages:
+  en:
+    lang: en
+    languageName: English
+    weight: 1
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+menu:
+  main:
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
