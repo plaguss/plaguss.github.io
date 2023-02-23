@@ -34,6 +34,7 @@ with anybody. None of it is in any specific order.
 - [https://www.anyscale.com/blog](https://www.anyscale.com/blog)
 - [https://simonwillison.net/](https://simonwillison.net/)
 - [https://lilianweng.github.io](https://lilianweng.github.io)
+- [https://jalammar.github.io/](https://jalammar.github.io/)
 
 {{< rawhtml >}}
  </details>
