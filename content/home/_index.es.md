@@ -6,15 +6,15 @@ weight: 3
 ---
 
 
-The following lists of items correspond to content that has
-helped me to learn (and still does), and would like to keem them
-located either for future use or just in case I want to share
-with anybody. None of it is in any specific order.
-
+Las siguientes listas corresponden a contenido que me ha 
+ayudado a aprender (y sigue haciéndolo), y me gustaría mantener lcalizadas
+tanto para uso futuro como por si quiero compartirlo con cualquier persona.
+No siguen ningún orden específico.
+        
 
 {{< rawhtml >}}
  <details>
-<summary> 📔 Blogs I tend to visit from time to time:</summary> 
+<summary> 📔 Blogs que suelo visitar de vez en cuando:</summary> 
 {{< /rawhtml >}}
 
 - [https://snarky.ca/](https://snarky.ca/)
@@ -43,7 +43,7 @@ with anybody. None of it is in any specific order.
 
 {{< rawhtml >}}
  <details>
-<summary> 📻 Podcasts I listen:</summary> 
+<summary> 📻 Podcasts que escucho:</summary> 
 {{< /rawhtml >}}
 
 - [The Stack Overflow Podcast](https://stackoverflow.blog/podcast/)
@@ -68,7 +68,7 @@ with anybody. None of it is in any specific order.
 
 {{< rawhtml >}}
  <details>
-<summary> 📚 Books I have read (completely or some parts), or that are waiting to be read:</summary> 
+<summary> 📚 Books que he leído (completos o alguna parte), o que esperan a ser leídos:</summary> 
 {{< /rawhtml >}}
 
 - [Natural Language Processing with PyTorch: Build Intelligent Language Applications Using Deep Learning](https://www.amazon.com/Natural-Language-Processing-PyTorch-Applications/dp/1491978236)

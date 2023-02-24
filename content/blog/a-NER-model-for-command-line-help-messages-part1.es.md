@@ -1,27 +1,32 @@
 ---
-title: "A NER Model for Command Line Help Messages (Part 1: The console program)"
+title: "Un modelo NER para los mensajes de ayuda de las consolas (Parte 1: el programa en línea de comandos)"
 date: 2023-02-21T18:55:27+01:00
 draft: false
 categories: ["NLP"]
 tags: ["NLP", "NER", "spaCy", "Python", "rich"]
 ---
 
-In this 3 part series I will tell the journey of creating a program to detect the different 
-components/entities of a command line program's help message. This post will start by looking at the final 
-product, [helpner](https://github.com/plaguss/helpner), a python program that can be installed 
-from [PyPI](https://pypi.org/project/helpner/), the second will tell about the spaCy NLP workflow 
-and finally we will take a look at the data that feeds spaCy.
+En esta serie de 3 partes voy a contar el viaje de crear un programa para detectar los diferentes
+componentes/entidades del mensaje de ayuda de un programa por línea de comandos. Esta entrada
+comenzará echando un vistazo al producto final [helpner](https://github.com/plaguss/helpner), un
+programa escrito en python que se puede instalar desde [PyPI](https://pypi.org/project/helpner/),
+la segunda parte tratará el flujo de trabajo de un pipeline en spaCy y finalmente echaremos un vistazo
+a los datos de los que se alimentará spaCy para el modelo final.
 
-> *The post assumes some python knowledge, like how to install a library from PyPI,*
-> *and some familiarity with spaCy.*
+> *Esta entrada asume algo de conocimiento de python, como instalar librerías de PyPI,*
+> *y cierta familiaridad con spaCy.*
 
-The following figure shows the architecture of helpner, each piece is represented by a different
-github repository. Highlighted in wellow at the bottom its the piece corresponding to
-[helpner](https://github.com/plaguss/helpner).
+La siguiente imagen muestra la arquitectura de helpner, cada pieza está representada por un repostorio
+de github diferente. Resaltado en amarillo en la parte inferior tenemos la parte correspondiente a [helpner](https://github.com/plaguss/helpner).
 
 ![helpner](/images/helpner-arch-part1.png)
 
-### What led me to start this project?
+### Que me llevó a empezar este proyecto?
+
+---
+SEGUIR AQUÍ
+
+---
 
 I wanted an NLP project to put into practice the spaCy facilities. If possible, the
 model should be ready to use by an end user without developing a website for it
