@@ -28,47 +28,29 @@ SEGUIR AQUÍ
 
 ---
 
-I wanted an NLP project to put into practice the spaCy facilities. If possible, the
-model should be ready to use by an end user without developing a website for it
-for simplicity. Independently, I found [docopt](http://docopt.org/) by chance exploring
-python CLI libraries. As it turns out, this library, and its maintained fork [docopt-ng](https://github.com/jazzband/docopt-ng)
-can generate a CLI program by parsing a "properly written" help message (visit the previous
-link to see an example). This same idea seemed like a good opportunity.
+Quería un proyecto de NLP para practicar algunas de las muchas facilidades que ofrece spaCy. De ser posible, el modelo debería ser fácil de usar por un usuario sin tener que crear una página web por simplicidad. Por otro lado, encontré [docopt](http://docopt.org/) de casualidad mientras exploraba librerías de python para crear CLIs. Resulta que esta librería y el fork de la misma que tiene mantenimiento ([docopt-ng](https://github.com/jazzband/docopt-ng)), pueden generar una CLI procesando un mensaje de ayuda escrito "apropiadamente" (vista el link previo para ver los ejemplos). Esta misma idea parecía una buena oportunidad.
 
-> Can we solve this using a Named Entity Recognition model? *...I don't care if its not the best approach*
+> Se puede resolver este problema utilizando un modelo [NER](https://spacy.io/usage/linguistic-features#named-entities)? *...No me importa si no es el mejor enfoque*
 
-Lets try to write a CLI program that can take a help message from another
-CLI program, and find the different elements or entities (`commands`, `arguments` and `options`)
-which conform it. It turns out that in around 200 lines of code, we can have a promising
-first version. Of course, this is not that simple, but with spaCy it feels like it :ok_hand:.
+Vamos a escribir un programa para la consola que pueda tomar un mensaje de ayuda de otro programa, y encontrar los diferentes elementos/entidades (comandos, argumentos y opciones) que lo conforman. Resulta que en alrededor de 200 lineas de código, podemos tener una primera versión prometedora :smile:. Está claro que no es tan sencillo internamente, pero spaCy hace que lo parezca.
 
-### Enter helpner
+### Entra helpner
 
-Lets see how [helpner](https://github.com/plaguss/helpner) works. 
-The installation consists of two steps. First, install using *pip* as usual
-(preferably inside a venv, it should be possible to install it using
-[pipx](URL), but I haven't tried it yet):
+Veamos como funciona [helpner](https://github.com/plaguss/helpner). La instalación consiste en dos pasos. Primero, instalamos con *pip* como es habitual, preferiblemente dentro de un *venv*. (Debería ser posible instalarlo utilizando [pipx](https://pypa.github.io/pipx/), pero no lo he probado todavía).
 
 ```console
 $ pip install helpner
 ```
 
-This should have downloaded the library, but as of this moment, its incomplete,
-we still have to download the model itself. For this, a handy command is supplied
-(visit the README.md for more information):
+Este comando debería descargar la librería, pero en este momento esta incompleta, todavía debemos descargar el modelo que utiliza internamente. Para esto, se ofrece un comando conveniente (se puede visitar el README.md para más información):
 
 ```console
 $ helpner download
 ```
 
-This two step process should be familiar for those who have already used [spaCy](URL). By using
-this approach it allows to split the development of the model from the use we make of
-it. We could update the model in any way (we could for example retrain the model with different
-data, or modify the optimizer used), and we would only need to update the model. It applies
-the same for the library, we could add more functionality without changing the inner model.
+Este proceso en dos pasos debería ser familiar a aquellos que ya conozcan [spaCy](https://spacy.io/). Utilizando este enfoque podemos separar el desarollo del modelo de el uso que hacemos del mismo. Podríamos actualizar el modelo de cualquier forma (por ejemplo reentrenarlo con datos distintos, o modificar el optimizador que utiliza), y solo necesitariamos actualizar el modelo (reejecutando el comando de descarga). Ocurre lo mismo con la librería, podemos añadir más funcionalidad sin necesidad de actualizar el modelo.
 
-We are already in position to use *helpner* :collision:, lets see one of the examples
-from the docs, how to highlight the entities of a help message (this was the first use that came to mind):
+Ya estamos listos para utilizar *helpner* :collision:, veamos uno de los ejemplos de la documentación, como resaltar las entidades del de un mensaje de ayuda (este fue el primer caso de uso que se me vino a la mente).
 
 ```sh
 flit install --help | helpner highlight
@@ -76,17 +58,9 @@ flit install --help | helpner highlight
 
 ![flit-install-help](/images/flit-install-help.svg)
 
-For those who don't know [flit](https://github.com/pypa/flit), its a command line program that 
-simplifies packaging python modules. The example shows the help message of one of its subcommands, 
-**flit install**. From the legend we see that the possible elements or entities are CMD (commands 
-or subcommands, which in this case depend on **flit** directly), `ARG` (positional arguments, 
-which in this case don't exist) and `OPT` (optional arguments, which correspond to all the elements 
-preceded by a single or double dash, are correctly predicted). But it calls the attention some 
-random words highlighted as if they were `CMD` entities, which are clearly misplaced. It is far from
-perfect, but I consider it a success anyway, the results seem promising enough!
+Para quien no conozca [flit](https://github.com/pypa/flit), es un programa por consola que simplifica empaquetar modulos de python. Este ejemplo muestra el mensaje de ayuda de uno de sus subcomandos, `flit install`. En la leyenda podemos ver que los posibles elementos o entidades son CMD (commandos o subcomandes, que en este caso depende de `flit` directamente), `ARG` (argumentos posicionales, que no aparecen en este caso) y `OPT` (argumentos opcionales, que corresponden a todos los elementos que están precedidos de uno o dos guiones, y el modelo ha predicho correctamente). Pero llaman la atención unas cuantas palabras al azar que salen resaltadas como si fueran `CMD`, que están claramente mal predichas. El modelo está lejos de ser perfecto, pero lo considero un éxito igualmente, los resultados parecen lo bastante prometedores!
 
-What happens underneath? what we did was send the help message to the *spaCy* model,
-and get the predictions:
+¿Que ocurre por debajo? lo que hemos hecho ha sido mandar el mensaje de ayuda al modelo de *spaCy*, y hemos obtenido las predicciones:
 
 ```console
 ❯ flit install --help | helpner parse --no-json
@@ -124,16 +98,8 @@ and get the predictions:
 }
 ```
 
-This output has all the necessary information to inform rich. The keys in the dict
-correspond to the elements found/predicted, and the values contain the entity, start
-and end position of the substrings. With this information, we can make use of 
-[rich](URL) to add some color to the console.
+Este output tiene toda la información necesaria para informar a `rich`. Las claves del diccionario corresponden a los elementos encontrados/predichos, y los valores contienen la entidad, comienzo y posición final de los "substrings". Con esta información, podemos hacer uso de [rich](https://rich.readthedocs.io/en/stable/introduction.html) para añadir algo de color a la consola.
 
-Of course, there are multiple errors (and this is an example that seems relatively
-right), the model cannot be better than the data it was fed with. In a posterior post
-we will see how the data powering this model is obtained.
+Por supuesto, hay muchos errores (y este es un ejemplo que parece relativamente correcto), el modelo no puede predecir mejor que los datos de los que se ha alimentado. En otro post más adelante veremos como se obtienen los datos que alimentan este modelo.
 
-<!-- ### Related posts
-
-add here -->
 

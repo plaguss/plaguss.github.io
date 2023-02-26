@@ -26,29 +26,29 @@ github repository. Highlighted in yellow at the bottom its the piece correspondi
 I wanted an NLP project to put into practice the spaCy facilities. If possible, the
 model should be ready to use by an end user without developing a website for it
 for simplicity. Independently, I found [docopt](http://docopt.org/) by chance exploring
-python CLI libraries. As it turns out, this library, and its maintained fork [docopt-ng](https://github.com/jazzband/docopt-ng)
+python CLI libraries. As it turns out, this library, and its maintained fork ([docopt-ng](https://github.com/jazzband/docopt-ng))
 can generate a CLI program by parsing a "properly written" help message (visit the previous
 link to see an example). This same idea seemed like a good opportunity.
 
-> Can we solve this using a Named Entity Recognition model? *...I don't care if its not the best approach*
+> Can we solve this using a [Named Entity Recognition](https://spacy.io/usage/linguistic-features#named-entities) model? *...I don't care if its not the best approach*
 
 Lets try to write a CLI program that can take a help message from another
 CLI program, and find the different elements or entities (`commands`, `arguments` and `options`)
 which conform it. It turns out that in around 200 lines of code, we can have a promising
-first version. Of course, this is not that simple, but with spaCy it feels like it :ok_hand:.
+first version :smile:. Of course, this is not that simple, but with spaCy it feels like it :ok_hand:.
 
 ### Enter helpner
 
 Lets see how [helpner](https://github.com/plaguss/helpner) works. 
 The installation consists of two steps. First, install using *pip* as usual
-(preferably inside a venv, it should be possible to install it using
-[pipx](URL), but I haven't tried it yet):
+preferably inside a venv. (It should be possible to install it using
+[pipx](https://pypa.github.io/pipx/), but I haven't tried it yet):
 
 ```console
 $ pip install helpner
 ```
 
-This should have downloaded the library, but as of this moment, its incomplete,
+This should have downloaded the library, but as of this moment its incomplete,
 we still have to download the model itself. For this, a handy command is supplied
 (visit the README.md for more information):
 
@@ -56,10 +56,10 @@ we still have to download the model itself. For this, a handy command is supplie
 $ helpner download
 ```
 
-This two step process should be familiar for those who have already used [spaCy](URL). By using
+This two step process should be familiar for those who have already used [spaCy](https://spacy.io/). By using
 this approach it allows to split the development of the model from the use we make of
 it. We could update the model in any way (we could for example retrain the model with different
-data, or modify the optimizer used), and we would only need to update the model. It applies
+data, or modify the optimizer used), and we would only need to update the model (running again the download command). It applies
 the same for the library, we could add more functionality without changing the inner model.
 
 We are already in position to use *helpner* :collision:, lets see one of the examples
@@ -73,8 +73,8 @@ flit install --help | helpner highlight
 
 For those who don't know [flit](https://github.com/pypa/flit), its a command line program that 
 simplifies packaging python modules. The example shows the help message of one of its subcommands, 
-**flit install**. From the legend we see that the possible elements or entities are CMD (commands 
-or subcommands, which in this case depend on **flit** directly), `ARG` (positional arguments, 
+`flit install`. From the legend we see that the possible elements or entities are CMD (commands 
+or subcommands, which in this case depend on `flit` directly), `ARG` (positional arguments, 
 which in this case don't exist) and `OPT` (optional arguments, which correspond to all the elements 
 preceded by a single or double dash, are correctly predicted). But it calls the attention some 
 random words highlighted as if they were `CMD` entities, which are clearly misplaced. It is far from
@@ -119,10 +119,10 @@ and get the predictions:
 }
 ```
 
-This output has all the necessary information to inform rich. The keys in the dict
+This output has all the necessary information to inform `rich`. The keys in the dict
 correspond to the elements found/predicted, and the values contain the entity, start
 and end position of the substrings. With this information, we can make use of 
-[rich](URL) to add some color to the console.
+[rich](https://rich.readthedocs.io/en/stable/introduction.html) to add some color to the console.
 
 Of course, there are multiple errors (and this is an example that seems relatively
 right), the model cannot be better than the data it was fed with. In a posterior post
