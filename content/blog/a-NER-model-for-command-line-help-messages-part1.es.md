@@ -23,11 +23,6 @@ de github diferente. Resaltado en amarillo en la parte inferior tenemos la parte
 
 ### Que me llevó a empezar este proyecto?
 
----
-SEGUIR AQUÍ
-
----
-
 Quería un proyecto de NLP para practicar algunas de las muchas facilidades que ofrece spaCy. De ser posible, el modelo debería ser fácil de usar por un usuario sin tener que crear una página web por simplicidad. Por otro lado, encontré [docopt](http://docopt.org/) de casualidad mientras exploraba librerías de python para crear CLIs. Resulta que esta librería y el fork de la misma que tiene mantenimiento ([docopt-ng](https://github.com/jazzband/docopt-ng)), pueden generar una CLI procesando un mensaje de ayuda escrito "apropiadamente" (vista el link previo para ver los ejemplos). Esta misma idea parecía una buena oportunidad.
 
 > Se puede resolver este problema utilizando un modelo [NER](https://spacy.io/usage/linguistic-features#named-entities)? *...No me importa si no es el mejor enfoque*
