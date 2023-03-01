@@ -6,11 +6,32 @@ weight: 3
 ---
 
 
+## Proyectos
+
+- `translate_md`: **Work in progress**. Un cliente para traducir ficheros markdown de inglés a 
+castellano, hace uso de [spanglish](https://github.com/plaguss/spanglish) para el servicio de traducción.
+- [`helpner`](https://github.com/plaguss/helpner): Un programa por consola escrito en python para extraer entidades
+de mensajes de ayuda de programas por consola. Hace uso de dos librerías intermedias: [`helpner-core`](https://github.com/plaguss/helpner-core)
+una plantilla de spaCy, y [`cli-help-maker`](https://github.com/plaguss/cli-help-maker) como generador de datos
+- `MoViNets para CrossFit`: Una aplicación escrita en [plotly dash](https://dash.plotly.com/) para clasificar movimientos
+de CrossFit _(no actualmente)_ desplegada en AWS, basada en una versión 'fine tuned' de [Mobile Video Networks (MoViNets)](https://github.com/tensorflow/models/tree/master/official/projects/movinet), la implementación
+en tensorflow de una red para clasificar movimientos humanos en videoclips. Los repositorios
+aún necesitan ponerse al día, pero entre los componentes, una librería de ayuda se puede ver
+aquí: [movinets_helper](https://github.com/plaguss/movinets_helper), el código para el front aquí: [movinets_dash_app](https://github.com/plaguss/movinets_dash_app), y las piezas relacionadas con la nube aquí: [lambda_aws](https://github.com/plaguss/tfm-misc/tree/main/lambda_aws)
+- [`pytokei`](https://github.com/plaguss/pytokei): Bindings en python para [tokei](https://github.com/XAMPPRocky/tokei), 
+un programa escrito en rust para extraer estadísticos sobre el código fuente.
+- [`biblioteca-cidaen`](https://github.com/plaguss/biblioteca-cidaen): _(written in spanish)_. Prototipo de una 'librería online' donde los estudiantes
+podrían compartir sus trabajos (de máster en este caso).
+Aunque está hecho a la medida del programa de máster que cursé, se puede
+utilizar como un enfoque interesante para ayudar introducir a los alumnos
+a la colaboración en GitHub mediante Pull Requests.
+
+## Algunos recursos maravillosos
 Las siguientes listas corresponden a contenido que me ha 
 ayudado a aprender (y sigue haciéndolo), y me gustaría mantener lcalizadas
 tanto para uso futuro como por si quiero compartirlo con cualquier persona.
 No siguen ningún orden específico.
-        
+
 
 {{< rawhtml >}}
  <details>
@@ -35,6 +56,7 @@ No siguen ningún orden específico.
 - [https://simonwillison.net/](https://simonwillison.net/)
 - [https://lilianweng.github.io](https://lilianweng.github.io)
 - [https://jalammar.github.io/](https://jalammar.github.io/)
+- [https://alvarobartt.github.io/](https://alvarobartt.github.io/)
 
 {{< rawhtml >}}
  </details>

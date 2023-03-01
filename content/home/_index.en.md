@@ -6,6 +6,28 @@ weight: 3
 ---
 
 
+## Projects
+
+- `translate_md`: **Work in progress**. A client to translate markdwon files from english to spanish,
+makes use of [spanglish](https://github.com/plaguss/spanglish) for the translation service.
+- [`helpner`](https://github.com/plaguss/helpner): A python console program to extract entities from command line 
+programs' help messages. It makes use of two intermediate libraries: [`helpner-core`](https://github.com/plaguss/helpner-core) as a
+spaCy template, and [`cli-help-maker`](https://github.com/plaguss/cli-help-maker) as a data generator.
+- `MoViNets for CrossFit`: A plotly dash app to classify CrossFit movements _(no longer)_ 
+deployed to AWS, based on a finetuned version of [Mobile Video Networks (MoViNets)](https://github.com/tensorflow/models/tree/master/official/projects/movinet), the tensorflow implementation of 
+a network to classify human movements in videoclips. The repos still need to be better
+organized, but los entre los comopnentes, a helper library can be seen here: [movinets_helper](https://github.com/plaguss/movinets_helper), the 
+code for the front here: [movinets_dash_app](https://github.com/plaguss/movinets_dash_app), and here the pieces related to the cloud: [lambda_aws](https://github.com/plaguss/tfm-misc/tree/main/lambda_aws).
+
+- [`pytokei`](https://github.com/plaguss/pytokei): Python bindings to [tokei](https://github.com/XAMPPRocky/tokei), 
+a rust program to extract statistics from your code.
+- [`biblioteca-cidaen`](https://github.com/plaguss/biblioteca-cidaen): _(written in spanish)_. A prototype for an 'online library' where the students could
+share their master's thesis.
+Even though its tailored for the master's program that I coursed, 
+it can be used as an interesting approach to introduce students
+to collaboration in GitHub and the Pull Request mecanism.
+
+## Some wonderful resources
 The following lists of items correspond to content that has
 helped me to learn (and still does), and would like to keep them
 located either for future use or just in case I want to share
@@ -35,6 +57,7 @@ with anybody. None of it is in any specific order.
 - [https://simonwillison.net/](https://simonwillison.net/)
 - [https://lilianweng.github.io](https://lilianweng.github.io)
 - [https://jalammar.github.io/](https://jalammar.github.io/)
+- [https://alvarobartt.github.io/](https://alvarobartt.github.io/)
 
 {{< rawhtml >}}
  </details>
