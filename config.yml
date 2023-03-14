@@ -37,20 +37,24 @@ languages:
           weight: 20
 
     params:
-      profileMode:
-        enabled: true
-        title: Agustín Piqueres Lajarín
-        subtitle: >-
-          You may find some things related to data science and python here.
-          I also tend to wander, partially related content could appear.
-        imageUrl: >-
-          https://raw.githubusercontent.com/plaguss/plaguss.github.io/main/.github/images/pic.jpg
-        imageTitle: Agus
-        imageWidth: 320
-        imageHeight: 320
-        buttons:
-          - name: Blog
-            url: /blog
+      defaultTheme: auto # to switch between dark or light according to browser theme
+      ShowCodeCopyButtons: true
+      homeInfoParams:
+        # enabled: true
+        Title: Hi there
+        Content: >-
+          Hi, this is Agus. I love open source and building things with python.
+          Maybe writing about them here helps other people, at least it will
+          be stored for my future self. Other than that I may be doing
+          CrossFit or watching The Office.
+        # imageUrl: >-
+        #   https://raw.githubusercontent.com/plaguss/plaguss.github.io/main/.github/images/pic.jpg
+        # imageTitle: Agus
+        # imageWidth: 320
+        # imageHeight: 320
+        # buttons:
+        #   - name: Blog
+        #     url: /blog
       socialIcons:
         - name: Github
           url: 'https://github.com/plaguss/'
@@ -99,25 +103,30 @@ languages:
           weight: 20
 
     params:
-      profileMode:
-        enabled: true
-        title: Agustín Piqueres Lajarín
-        subtitle: >-
-          Puede que encuentres cosas relacionadas con ciencia de datos y python aquí.
-          También suelo divagar, así que posiblemente aparezca contenido parcialmente relacionado
-        imageUrl: >-
-          https://raw.githubusercontent.com/plaguss/plaguss.github.io/main/.github/images/pic.jpg
-        imageTitle: Agus
-        imageWidth: 320
-        imageHeight: 320
-        buttons:
-          - name: Blog
-            url: /blog
+      defaultTheme: auto # to switch between dark or light according to browser theme
+      homeInfoParams:
+        # enabled: true
+        Title: Hola
+        Content: >-
+          Hola, me llamo Agus. Me encanta el código libre y construir cosas con
+          Python. Quizá escribiendo de ellas aquí ayude a otras personas, al
+          menos estará guardado para mi yo futuro.
+          A parte de esto es posible que esté haciendo CrossFit o viendo
+          The Office.
+        # imageUrl: >-
+        #   https://raw.githubusercontent.com/plaguss/plaguss.github.io/main/.github/images/pic.jpg
+        # imageTitle: Agus
+        # imageWidth: 320
+        # imageHeight: 320
+        # buttons:
+        #   - name: Blog
+        #     url: /blog
       socialIcons:
         - name: Github
           url: 'https://github.com/plaguss/'
         - name: LinkedIn
           url: 'https://www.linkedin.com/in/agustín-piqueres-lajarín-6a661810a'
+
       info:
         description: ''
         title404: Nothing's here!
