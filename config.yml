@@ -39,6 +39,7 @@ languages:
     params:
       defaultTheme: auto # to switch between dark or light according to browser theme
       ShowCodeCopyButtons: true
+      ShowToc: true
       homeInfoParams:
         # enabled: true
         Title: Hi there
@@ -104,6 +105,8 @@ languages:
 
     params:
       defaultTheme: auto # to switch between dark or light according to browser theme
+      ShowCodeCopyButtons: true
+      ShowToc: true
       homeInfoParams:
         # enabled: true
         Title: Hola
