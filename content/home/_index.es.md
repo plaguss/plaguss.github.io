@@ -8,8 +8,8 @@ weight: 3
 
 ## Proyectos
 
-- `translate_md`: **Work in progress**. Un cliente para traducir ficheros markdown de inglés a 
-castellano, hace uso de [spanglish](https://github.com/plaguss/spanglish) para el servicio de traducción.
+- [`translate_md`](https://github.com/plaguss/translate-md/blob/main/pyproject.toml): Un cliente para traducir ficheros markdown de inglés a 
+castellano, hace uso de [spanglish](https://github.com/plaguss/spanglish) una app de Ray que sirve un 🤗 Transformer.
 - [`helpner`](https://github.com/plaguss/helpner): Un programa por consola escrito en python para extraer entidades
 de mensajes de ayuda de programas por consola. Hace uso de dos librerías intermedias: [`helpner-core`](https://github.com/plaguss/helpner-core)
 una plantilla de spaCy, y [`cli-help-maker`](https://github.com/plaguss/cli-help-maker) como generador de datos

@@ -8,8 +8,8 @@ weight: 3
 
 ## Projects
 
-- `translate_md`: **Work in progress**. A client to translate markdwon files from english to spanish,
-makes use of [spanglish](https://github.com/plaguss/spanglish) for the translation service.
+- [`translate_md`](https://github.com/plaguss/translate-md/blob/main/pyproject.toml): A client to translate markdwon files from english to spanish,
+makes use of [spanglish](https://github.com/plaguss/spanglish) for the translation service, a Ray app that serves a 🤗 Transformer model.
 - [`helpner`](https://github.com/plaguss/helpner): A python console program to extract entities from command line 
 programs' help messages. It makes use of two intermediate libraries: [`helpner-core`](https://github.com/plaguss/helpner-core) as a
 spaCy template, and [`cli-help-maker`](https://github.com/plaguss/cli-help-maker) as a data generator.
