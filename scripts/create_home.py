@@ -60,10 +60,12 @@ def add_projects(lang: str = "en") -> str:
     if lang == "en":
         md_proj.add(md.title(2, "Projects"))
 
-        translate_md = md.code("translate_md")
-        translate_md += """: {}. A client to translate markdwon files from english to spanish,
-makes use of {} for the translation service.""".format(
-            md.bold("Work in progress"),
+        translate_md = md.link(
+            md.code("translate_md"),
+            "https://github.com/plaguss/translate-md/blob/main/pyproject.toml",
+        )
+        translate_md += """: A client to translate markdwon files from english to spanish,
+makes use of {} for the translation service, a Ray app that serves a 🤗 Transformer model.""".format(
             md.link("spanglish", "https://github.com/plaguss/spanglish"),
         )
 
@@ -130,10 +132,12 @@ to collaboration in GitHub and the Pull Request mecanism.""".format(
     else:
         md_proj.add(md.title(2, "Proyectos"))
 
-        translate_md = md.code("translate_md")
-        translate_md += """: {}. Un cliente para traducir ficheros markdown de inglés a 
-castellano, hace uso de {} para el servicio de traducción.""".format(
-            md.bold("Work in progress"),
+        translate_md = md.link(
+            md.code("translate_md"),
+            "https://github.com/plaguss/translate-md/blob/main/pyproject.toml",
+        )
+        translate_md += """: Un cliente para traducir ficheros markdown de inglés a 
+castellano, hace uso de {} una app de Ray que sirve un 🤗 Transformer.""".format(
             md.link("spanglish", "https://github.com/plaguss/spanglish"),
         )
 
@@ -196,7 +200,6 @@ a la colaboración en GitHub mediante Pull Requests.""".format(
                 ]
             )
         )
-
 
     return md_proj.text
 
