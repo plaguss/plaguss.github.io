@@ -1,7 +1,7 @@
 ---
 title: "A NER Model for Command Line Help Messages (Part 2: spaCy projects to the rescue)"
 date: 2023-03-14T21:01:11+01:00
-draft: true
+draft: false
 categories: ["NLP"]
 tags: ["NLP", "NER", "spaCy", "Python"]
 ---
