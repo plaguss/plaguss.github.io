@@ -6,15 +6,15 @@ categories: ["NLP"]
 tags: ["NLP", "NER", "spaCy", "Python"]
 ---
 
-Lets continue our journey with [helpner-core](https://github.com/plaguss/helpner-core), the [spaCy project](https://github.com/explosion/projects) that does all the magic under `helpner`.
+Lets continue our journey with [helpner-core](https://github.com/plaguss/helpner-core), the [spaCy project](https://github.com/explosion/projects) that does all the magic behind `helpner`.
 
 ![helpner-core](/images/helpner-arch-part2.png)
 
-This repository contains a spaCy template for a NER model, and allows to build the end-to-end spaCy workflow from the [`spacy project`](https://spacy.io/api/cli#project) cli command manager.
+This repository contains a spaCy template for a NER model, and allows to build the end-to-end spaCy workflow from the [`spacy project`](https://spacy.io/api/cli#project) cli command manager. In short, spaCy projects present *End-to-end NLP workflows from prototype to production*. 
 
-We will visit the different steps of the whole workflow in terms of the different commands that 
+We will visit the different steps of the whole workflow following the commands that involve the pipeline.
 
-## ⏯ Commands
+## `helpner-core` workflow
 
 All this process is stored in the [`project.yml`](https://github.com/plaguss/helpner-core/blob/main/project.yml) file, which contains the single source of truth for the project.
 
@@ -22,19 +22,19 @@ All this process is stored in the [`project.yml`](https://github.com/plaguss/hel
 
 ![helpner-core](/images/helpner2/workflow_1.png)
 
-The first step is the dataset creation. I could have gone down the path of gathering a different number of CLI help messages and start labelling them. This could easily get a very tedious task, and as the task allowed it, I started implementing a synthetic data generator (I will present [cli-help-maker](https://github.com/plaguss/cli-help-maker) in a different post).
+The first step is the dataset creation. I could have gone down the path of gathering a different number of CLI help messages and start labelling them, but it could easily get a very tedious task, and as the task allowed it, I started implementing a synthetic data generator (I will present [cli-help-maker](https://github.com/plaguss/cli-help-maker) in a different post).
 
-So the first command we will see is:
+Lets introduce the first command:
 
 ```console
 spacy project run create-dataset
 ```
 
-Running this command calls the [cli-help-maker](https://github.com/plaguss/cli-help-maker), with a [`dataset.yaml`](https://github.com/plaguss/helpner-core/blob/main/assets/v0.2.0/dataset.yaml) file which contains the arguments needed for the program. This simplifies the versioning of the different data sets, we just have to store the *yaml* of any given version, other than that the dataset contains random data with the layout and content we want the model to capture.
+Running this command calls the program [cli-help-maker](https://github.com/plaguss/cli-help-maker), with a [`dataset.yaml`](https://github.com/plaguss/helpner-core/blob/main/assets/v0.2.0/dataset.yaml) file which contains the arguments needed for the program. This simplifies the versioning of the different data sets, we just have to store the *yaml* of any given version, all the relevant information to create a dataset is contained in a single file. Other than that the dataset contains random data with the layout and content we want the model to capture.
 
 This command returns two files:
 
-- `dataset.jsonl`: A [jsonl]() file, where each line corresponds to a sample, that contains *message* and the *annotations*.
+- `dataset.jsonl`: A [jsonl](https://jsonlines.org/) file, where each line corresponds to a sample, that contains *message* and the *annotations*.
 
 ```json
 {"message":"Usage: \n    chedlock digynia borofluoric begirdle underbeadle [-d] [CONGRUENTLY...] [ACROBATISM... [ZONOID...]]\n\nFusillade preventively hogyard approachles.\n\nCommands:\n    digynia\n...", "annotations": [["CMD",21,28],["CMD", 29,40]...] }
@@ -51,10 +51,9 @@ This command returns two files:
 
 Now we are ready to prepare the dataset for the training process.
 
-### First workflow
+### Data workflow
 
-MAIN WORKFLOW FROM DATASET CREATION UNTIL EVALUATION
-
+The process is divided in two different worflows just to outline the fact that the first part corresponds to data preparation, training and evaluation, while the next part deals with packaging related processes.
 
 #### Data preparation
 
@@ -77,7 +76,7 @@ This command simply splits the file in two different files `dataset_train.jsonl`
 spacy project run convert
 ```
 
-Which transforms the *message* in each row of the `jsonl` file to a serializable format: [`DocBin`](https://spacy.io/api/docbin/), to obtain two new files `dataset_train.spacy` and `dataset_dev.spacy`.
+It transforms the *message* in each row of the `jsonl` file to a serializable format: [`DocBin`](https://spacy.io/api/docbin/), to obtain two new files `dataset_train.spacy` and `dataset_dev.spacy`.
 
 Its time for some action!
 
@@ -92,7 +91,7 @@ The following program starts the training process:
 spacy project run train
 ```
 
-This command reads all the necessary info from the [config files](https://github.com/plaguss/helpner-core/tree/main/configs) (you can read more in the spaCy [training docs](https://spacy.io/usage/training#quickstart)), the config files correspond to the NER components and CPU hardware.
+This command reads all the necessary info from the [config files](https://github.com/plaguss/helpner-core/tree/main/configs) (you can read more in the spaCy [training docs](https://spacy.io/usage/training#quickstart)), which correspond to the NER *components*, CPU *hardware* and *optimized for* efficiency.
 
 Its created from the spaCy defaults, there is no need to change anything during this step. Given the model is just a proof of concept, and the dataset used is small enough, we can just train in our personal computer without a GPU, it just needs some minutes to finish the training process.
 
@@ -108,7 +107,7 @@ After running the [`benchmark accuracy`](https://spacy.io/api/cli#benchmark-accu
 spacy project run evaluate
 ```
 
-The output file of the command is a `metrics.json` file (whose result can be transferred to a README file easily as we will see later) contains information about the model's performance. Lets take a look at the table with the information per entity, **NER per type table:**
+The output file of the command is a `metrics.json` file that contains information about the model's performance (this content can be transferred to a README file easily as we will see later). The following table presents the information per entity, **NER per type table:**
 
 |  | P | R | F |
 | --- | --- | --- | --- |
@@ -116,12 +115,12 @@ The output file of the command is a `metrics.json` file (whose result can be tra
 | ARG | 94.79 | 89.97 | 92.32 |
 | OPT | 98.88 | 98.96 | 98.92 |
 
-The first thing to note is that the results seem to be really good. The smallest value corresponds to the *recall* (R) value of `ARG` entities (89.97), the element that tends to get more confused, while the highest corresponds to the *recall* of `CMD`, which when predicted on the sample tends to be correct.
+The first thing to note is that the results seem to be really good for such a simple model with no special meaning besides the layout of the entities. The smallest value corresponds to the *recall* (R) value of `ARG` entities (89.97), the element that tends to get more confused, while the highest corresponds to the *recall* of `CMD`.
 
 *But*, this results must be taken carefully, the dataset in which the model was trained is totaly synthetic, and the results may not be as good as expected in real data. *It just shows that the model is able to learn from the data it was fed with.*
 
 
-### Second workflow
+### Packaging workflow
 
 Up to this point, we run the enabled workflows in `project.yml` file, which correspond to:
 
@@ -129,13 +128,13 @@ Up to this point, we run the enabled workflows in `project.yml` file, which corr
 spacy project run all
 ```
 
-Those are related to the data processing, model training and evaluation. A second workflow (more a subsequent set of commands) is for more house keeping tasks:
+Those are related to the data processing, model training and evaluation. A second workflow (more a subsequent set of commands) is for house keeping related tasks:
 
 #### Packaging
 
 ![helpner-core](/images/helpner2/workflow_5.png)
 
-The first of these commands is the `package`. SpaCy easily allows to generate a package automatically from our model, just by running a command, so it can be easily installed and loaded afterwards:
+The first of these commands is the [`package`](https://spacy.io/api/cli#package). SpaCy easily allows to generate a package automatically from our model, just by running a command, so it can be easily installed and loaded afterwards:
 
 ```console
 spacy project run package
@@ -143,34 +142,36 @@ spacy project run package
 
 Just place the contents generated somewhere accessible to pip, and you are ready to `pip install` the model to be used with spaCy. It even comes with a README.md file generated from the metrics.json file obtained, so the relevant content is autoexplained.
 
+Following the spaCy approach to model storage with [spaCy models](https://github.com/explosion/spacy-models), the trained models are stored in the [releases](https://github.com/plaguss/helpner-core/releases) of the repository, and `helpner` deals with the installation process via `pip install`.
+
 #### Readme
 
 ![helpner-core](/images/helpner2/workflow_6.png)
 
-One last command and we are finished! SpaCy templates come with its another magic command to generate a prety README for your project: [`spacy project document`](https://spacy.io/api/cli#project-document). I wanted to add some more content automatically to this README file, and with a little script and the help of [`wasabi`](https://github.com/explosion/wasabi) (a Explosion library which helps with console printing, but also with Markdown rendering), its as simple as it gets:
+One last command and we are finished!
+
+SpaCy templates come with another magic command to generate a pretty README.md for your project: [`spacy project document`](https://spacy.io/api/cli#project-document). I wanted to add some more content automatically to this README file, and with a little script and the help of [`wasabi`](https://github.com/explosion/wasabi) (a Explosion library which helps with console printing, but also with Markdown rendering), its as simple as it gets:
 
 
 ```console
 spacy project run readme
 ```
 
-This command generates the readme for the `helpner-core` repository automatically, adding to the original generated README some additional metrics, or information from the dataset used for the current version, which seemed interesting enough to be added.
+This command generates the readme for the `helpner-core` repository automatically, adding to the original generated README some additional metrics, like information from the dataset used for the current version, which seemed interesting enough to be added.
 
 #### Deployment
 
 ![helpner-core](/images/helpner2/workflow_7.png)
 
-The most relevant step make the model available for everybody easily isn't properly mapped to a command, it must be done manually still :grin:.
+The most relevant step make the model available for everybody easily isn't properly mapped to a command, I have to do it manually for the moment :grin:.
 
-But lets assume the following command is already working:
+But lets assume the following command is already working (*for the moment, this is done using GitHub in the browser directly*):
 
 ```console
 spacy project run release
 ```
 
-*For the moment, this is done using GitHub in the browser directly*.
-
-The previously package is uploaded to github as a release (the [releases](https://github.com/plaguss/helpner-core/releases) can be seen in the following page), including a small description of the model's accuracy, the weights and the necessary information to import the model just like any other spaCy model:
+The previously created package is uploaded to github as a release (the [releases](https://github.com/plaguss/helpner-core/releases) can be seen in the following page), including a small description of the model's accuracy, the weights and the necessary information to import the model just like any other spaCy model, after installation, it can be imported as usual in spaCy:
 
 ```python
 import spacy
