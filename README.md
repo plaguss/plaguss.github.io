@@ -36,6 +36,8 @@ Add a new post
 hugo new blog/my-first-post.md
 ```
 
+In case something is to be added to `/home`, add the content on the `scripts/create_home.py` file, and run the scriot.
+
 The deployment is automated, just push to the main branch and run.
 
 
