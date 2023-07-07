@@ -8,6 +8,12 @@ weight: 3
 
 ## Projects
 
+- [`talking-python`](https://github.com/plaguss/talking-python): Streamlit app to explore [talk python to me](https://talkpython.fm/episodes/all)
+podcast episodes using semantic search.
+It grabs all the episodes transcriptions weekly, creates embeddings from them and 
+stores them in a `chroma` vector database to allow searching for them using natural language.
+The app is deployed at [explore-talk-python-to-me](https://explore-talk-python-to-me.streamlit.app/).
+        
 - [`translate_md`](https://github.com/plaguss/translate-md/blob/main/pyproject.toml): A client to translate markdwon files from english to spanish,
 makes use of [spanglish](https://github.com/plaguss/spanglish) for the translation service, a Ray app that serves a 🤗 Transformer model.
 - [`helpner`](https://github.com/plaguss/helpner): A python console program to extract entities from command line 
@@ -58,6 +64,9 @@ with anybody. None of it is in any specific order.
 - [https://lilianweng.github.io](https://lilianweng.github.io)
 - [https://jalammar.github.io/](https://jalammar.github.io/)
 - [https://alvarobartt.github.io/](https://alvarobartt.github.io/)
+- [https://koaning.io/](https://koaning.io/)
+- [https://thomwolf.io/](https://thomwolf.io/)
+- [https://hynek.me/articles/](https://hynek.me/articles/)
 
 {{< rawhtml >}}
  </details>

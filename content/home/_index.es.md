@@ -57,6 +57,9 @@ No siguen ningún orden específico.
 - [https://lilianweng.github.io](https://lilianweng.github.io)
 - [https://jalammar.github.io/](https://jalammar.github.io/)
 - [https://alvarobartt.github.io/](https://alvarobartt.github.io/)
+- [https://koaning.io/](https://koaning.io/)
+- [https://thomwolf.io/](https://thomwolf.io/)
+- [https://hynek.me/articles/](https://hynek.me/articles/)
 
 {{< rawhtml >}}
  </details>
