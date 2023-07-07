@@ -60,6 +60,17 @@ def add_projects(lang: str = "en") -> str:
     if lang == "en":
         md_proj.add(md.title(2, "Projects"))
 
+        talking_python = md.link(
+            md.code("talking-python"),
+            "https://github.com/plaguss/talking-python"
+        )
+        talking_python += """: Streamlit app to explore [talk python to me](https://talkpython.fm/episodes/all)
+podcast episodes using semantic search.
+It grabs all the episodes transcriptions weekly, creates embeddings from them and 
+stores them in a `chroma` vector database to allow searching for them using natural language.
+The app is deployed at [explore-talk-python-to-me](https://explore-talk-python-to-me.streamlit.app/).
+        """
+
         translate_md = md.link(
             md.code("translate_md"),
             "https://github.com/plaguss/translate-md/blob/main/pyproject.toml",
@@ -120,6 +131,7 @@ to collaboration in GitHub and the Pull Request mecanism.""".format(
         md_proj.add(
             md.list(
                 [
+                    talking_python,
                     translate_md,
                     helpner,
                     movinets_for_crossfit,
@@ -271,6 +283,7 @@ def create_home_file(filename: Path, lang: str = "en") -> None:
     data = content(blogs, podcasts, books, lang=lang)
 
     filename.write_text(data, encoding="utf-8")
+    print(f"File written at {filename}")
 
 
 if __name__ == "__main__":
